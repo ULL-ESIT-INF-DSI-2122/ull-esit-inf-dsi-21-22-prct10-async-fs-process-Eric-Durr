@@ -9,7 +9,7 @@
   "scripts": {
     "test": "mocha -r ts-node/register 'test/**/*.ts'",
     "test:coverage": "nyc mocha -r ts-node/register 'test/**/*.ts'",
-    "get:coverage": "nyc report --reporter=text-lcov --exclude=./src/notes.ts",
+    "get:coverage": "nyc report --reporter=text-lcov",
     "test:watch": "mocha --watch -r ts-node/register 'test/**/*.ts' ",
     "build": "npm test && tsc",
     "docs": " typedoc --options typedoc.json --name \"P10 - Sistema de ficheros y creación de procesos en Node.js\" --includeVersion"
