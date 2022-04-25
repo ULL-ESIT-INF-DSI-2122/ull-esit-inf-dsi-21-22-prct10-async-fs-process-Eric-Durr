@@ -1,7 +1,9 @@
 {
   "entryPoints": [
-    "./src/Note.class.ts",
-    "./src/User.class.ts"
+    "./src/task1.ts",
+    "./src/task2.ts",
+    "./src/task3.ts",
+    "./src/task4.ts"
   ],
   "out": "doc"
 }
