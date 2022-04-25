@@ -1,8 +1,9 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
+import { dummy } from '../src/task1';
 
 describe('.', () => {
   it('..', () => {
-    expect(true).to.be.true;
+    expect(dummy()).to.be.true;
   });
 });

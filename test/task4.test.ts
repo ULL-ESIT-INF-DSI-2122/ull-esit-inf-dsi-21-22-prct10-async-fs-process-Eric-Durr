@@ -1,8 +1,10 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 
-describe('....', () => {
-  it('.....', () => {
-    expect(true).to.be.true;
+import { dummy } from '../src/task4';
+
+describe('.', () => {
+  it('..', () => {
+    expect(dummy()).to.be.true;
   });
 });
