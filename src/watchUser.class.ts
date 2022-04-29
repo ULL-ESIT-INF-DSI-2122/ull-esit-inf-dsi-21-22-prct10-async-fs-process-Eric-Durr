@@ -35,9 +35,6 @@ export default class WatchUserClass {
           if (currFileNames.length < prevFileNames.length) {
             console.log(`Note ${filename} was deleted for ${this.user}`);
           }
-          if (currFileNames.length === prevFileNames.length) {
-            console.log(`Note was renamed as ${filename} for ${this.user}`);
-          }
           prevFileNames = fs.readdirSync(`./database/${this.user}`);
         }
         if (eventType === 'change') {
