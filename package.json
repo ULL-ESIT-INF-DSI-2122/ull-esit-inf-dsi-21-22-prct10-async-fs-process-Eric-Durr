@@ -11,6 +11,7 @@
     "task-1": "node dist/task1.js",
     "task-2-piped": "node dist/pipedCatAndGrep.js",
     "task-2-no-pipe": "node dist/nonPipedCatAndGrep.js",
+    "task-3": "node dist/task3.js",
     "test:coverage": "nyc mocha -r ts-node/register 'test/**/*.ts'",
     "get:coverage": "nyc report --reporter=text-lcov",
     "test:watch": "mocha --watch -r ts-node/register 'test/**/*.ts' ",
