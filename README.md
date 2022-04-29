@@ -78,6 +78,7 @@
 
 [Guión de la práctica](https://ull-esit-inf-dsi-2122.github.io/prct10-async-fs-process/)
 
+[NodeJS API - child_process: subprocess stdin](https://nodejs.org/api/child_process.html#subprocessstdin)
 
 ## Estructura del directorio
 
