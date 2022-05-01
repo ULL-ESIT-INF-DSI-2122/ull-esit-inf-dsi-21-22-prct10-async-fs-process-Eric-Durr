@@ -47,14 +47,35 @@
 
 ## Introducción
 
+El siguiente documento pretende servir de registro y justificación
+para las soluciones desarrolladas para los ejercicios de la práctica,
+además de explicar algunas de las cuestiones planteadas a lo largo del
+guión.
 
 ***
 
 ## Objetivos
 
+El objetivo de la décima práctica es hacer uso de la API asíncrona de NodeJS
+para la manipulación del sistema de ficheros y para la creación de procesos
+en NodeJS.
+
+Para el final de la práctica se espera que el proyecto cuente con:
+
+- Soluciones a los cuatro ejercicios del guión.
+- Todas las preguntas resueltas.
+- Documentación autogenerada.
+- Tests para las clases desarrolladas
+- Configuraciones para las herramientas de calidad y cobertura de código
+- Ficheros de automatización de procesos de integración continua para Github Actions 
+
 ***
 
 ## Actividades previas
+
+Entre las actividades previas se encuentra la aceptación de la asignación de la tarea en Github Classroom,
+la configuración del repositorio y la práctica de los módulos de la API de NodeJS.
+
 
 ***
 
