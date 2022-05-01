@@ -44,22 +44,28 @@ switch (process.argv[2]) {
     new MkAndRm(process.argv[3]).destroy();
     break;
   case 'auto-cp':
-    if (new CheckRoute(process.argv[3]).type === 'none') {
-      console.log(`The path ${process.argv[3]} doesn't contain a file nor a directory`);
-    } else if (new CheckRoute(process.argv[4]).type === 'none') {
-      console.log(`The path ${process.argv[4]} doesn't contain a file nor a directory`);
-    } else if (new CheckRoute(process.argv[3]).type === 'directory') {
-      spawn('cp', ['-r', process.argv[3], `${process.argv[4]}/`])
-        .stdout.on('data', (data) => {
-          console.log(data.toString());
-        });
+    if (process.argv.length < 5) {
+      if (new CheckRoute(process.argv[3]).type === 'none') {
+        console.log(`The path ${process.argv[3]} doesn't contain a file nor a directory`);
+      } else if (new CheckRoute(process.argv[4]).type === 'none') {
+        console.log(`The path ${process.argv[4]} doesn't contain a file nor a directory`);
+      } else if (new CheckRoute(process.argv[3]).type === 'directory') {
+        spawn('cp', ['-r', process.argv[3], `${process.argv[4]}/`])
+          .stdout.on('data', (data) => {
+            console.log(data.toString());
+          });
+      } else {
+        spawn('cp', [process.argv[3], `${process.argv[4]}/`])
+          .stdout.on('data', (data) => {
+            console.log(data.toString());
+          });
+      }
     } else {
-      spawn('cp', [process.argv[3], `${process.argv[4]}/`])
-        .stdout.on('data', (data) => {
-          console.log(data.toString());
-        });
+      console.log('Must specify a destination path');
     }
+
     break;
   default:
+    console.log(`Option ${process.argv[2]} does not exist, try again`);
     break;
 }
