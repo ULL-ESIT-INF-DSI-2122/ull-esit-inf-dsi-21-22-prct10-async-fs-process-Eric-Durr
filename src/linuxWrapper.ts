@@ -17,7 +17,7 @@
 
 import { spawn } from 'child_process';
 import CheckRoute from './checkRoute.class';
-import NewDirectory from './newDirectory.class';
+import MkAndRm from './newDirectory.class';
 
 switch (process.argv[2]) {
   case 'test-path':
@@ -28,7 +28,7 @@ switch (process.argv[2]) {
     }
     break;
   case 'mkdir':
-    new NewDirectory(process.argv[3]).build();
+    new MkAndRm(process.argv[3]).build();
     break;
   case 'ls':
     spawn('ls', ['-lah', process.argv[3]]).stdout.on('data', (data) => {
@@ -39,6 +39,9 @@ switch (process.argv[2]) {
     spawn('cat', [process.argv[3]]).stdout.on('data', (data) => {
       console.log(data.toString());
     });
+    break;
+  case 'auto-rm':
+    new MkAndRm(process.argv[3]).destroy();
     break;
   default:
     break;

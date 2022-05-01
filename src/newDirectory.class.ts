@@ -1,7 +1,7 @@
-import { mkdir, rmdir } from 'fs';
-import { spawn } from 'child_process';
+import { mkdir, rmdir, rm } from 'fs';
+import CheckRoute from './checkRoute.class';
 
-export default class NewDirectory {
+export default class MkAndRm {
   private _directoryPath: string;
 
   private _directoryName: string;
@@ -41,10 +41,19 @@ export default class NewDirectory {
   }
 
   public destroy(): void {
-    rmdir(this.directoryPath, async (error) => {
-      if (error) {
-        console.error(error.message);
-      }
-    });
+    if (new CheckRoute(this.directoryPath).type === 'directory') {
+      rmdir(this.directoryPath, async (error) => {
+        if (error) {
+          console.error(error.message);
+        }
+      });
+    }
+    if (new CheckRoute(this.directoryPath).type === 'file') {
+      rm(this.directoryPath, async (error) => {
+        if (error) {
+          console.error(error.message);
+        }
+      });
+    }
   }
 }
