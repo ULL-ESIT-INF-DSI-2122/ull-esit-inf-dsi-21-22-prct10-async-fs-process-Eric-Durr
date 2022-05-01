@@ -1,5 +1,4 @@
 import fs, { existsSync, watch } from 'fs';
-import { Note } from './notes/Note.class';
 /**
  * # Watch User Class | Primary parent class
  * This class watches changes on a certain user notes and notify them

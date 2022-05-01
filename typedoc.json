@@ -1,9 +1,10 @@
 {
   "entryPoints": [
-    "./src/task1.ts",
-    "./src/task2.ts",
-    "./src/task3.ts",
-    "./src/task4.ts"
+    "./src/notes/manage.functions.ts",
+    "./src/notes/Note.class.ts",
+    "./src/notes/User.class.ts",
+    "./src/checkRoute.class.ts",
+    "./src/watchUser.class.ts"
   ],
   "out": "doc"
 }

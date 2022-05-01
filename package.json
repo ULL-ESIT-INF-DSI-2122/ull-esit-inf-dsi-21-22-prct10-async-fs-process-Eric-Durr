@@ -13,7 +13,7 @@
     "task-2-no-pipe": "node dist/nonPipedCatAndGrep.js",
     "task-3": "node dist/task3.js",
     "test:coverage": "nyc mocha -r ts-node/register 'test/**/*.ts'",
-    "get:coverage": "nyc report --reporter=text-lcov",
+    "get:coverage": "nyc report --reporter=text-lcov --exclude=./src/notes.ts",
     "test:watch": "mocha --watch -r ts-node/register 'test/**/*.ts' ",
     "build": "npm test && tsc",
     "docs": " typedoc --options typedoc.json --name \"P10 - Sistema de ficheros y creación de procesos en Node.js\" --includeVersion"
