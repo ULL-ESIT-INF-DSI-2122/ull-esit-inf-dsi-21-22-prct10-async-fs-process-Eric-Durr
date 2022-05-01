@@ -17,7 +17,7 @@
 
 import { spawn } from 'child_process';
 import CheckRoute from './checkRoute.class';
-import MkAndRm from './newDirectory.class';
+import MkAndRm from './mkAndRm.class';
 
 switch (process.argv[2]) {
   case 'test-path':
@@ -42,6 +42,23 @@ switch (process.argv[2]) {
     break;
   case 'auto-rm':
     new MkAndRm(process.argv[3]).destroy();
+    break;
+  case 'auto-cp':
+    if (new CheckRoute(process.argv[3]).type === 'none') {
+      console.log(`The path ${process.argv[3]} doesn't contain a file nor a directory`);
+    } else if (new CheckRoute(process.argv[4]).type === 'none') {
+      console.log(`The path ${process.argv[4]} doesn't contain a file nor a directory`);
+    } else if (new CheckRoute(process.argv[3]).type === 'directory') {
+      spawn('cp', ['-r', process.argv[3], `${process.argv[4]}/`])
+        .stdout.on('data', (data) => {
+          console.log(data.toString());
+        });
+    } else {
+      spawn('cp', [process.argv[3], `${process.argv[4]}/`])
+        .stdout.on('data', (data) => {
+          console.log(data.toString());
+        });
+    }
     break;
   default:
     break;

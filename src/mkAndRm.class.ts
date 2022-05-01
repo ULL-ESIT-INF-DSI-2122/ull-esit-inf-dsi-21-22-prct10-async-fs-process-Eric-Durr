@@ -4,7 +4,7 @@ import CheckRoute from './checkRoute.class';
 export default class MkAndRm {
   private _directoryPath: string;
 
-  private _directoryName: string;
+  private _name: string;
 
   private _buildStatusMsg: string;
 
@@ -12,7 +12,7 @@ export default class MkAndRm {
 
   constructor(directoryPath: string) {
     this._directoryPath = directoryPath;
-    this._directoryName = directoryPath
+    this._name = directoryPath
       .split('/')[directoryPath.split('/').length - 1];
     this._buildStatusMsg = '';
     this._destroyStatusMsg = '';
@@ -20,22 +20,18 @@ export default class MkAndRm {
 
   get directoryPath(): string { return this._directoryPath; }
 
-  get directoryName(): string { return this._directoryName; }
+  get name(): string { return this._name; }
 
   get buildStatusMsg(): string { return this._buildStatusMsg; }
 
-  set buildStatusMsg(value: string) { this._buildStatusMsg = value; }
-
   get destroyStatusMsg(): string { return this._destroyStatusMsg; }
-
-  set destroyStatusMsg(value: string) { this._destroyStatusMsg = value; }
 
   public build(): void {
     mkdir(this.directoryPath, async (error) => {
       if (error) {
         console.error(error.message);
       } else {
-        console.log(`New directory ${this.directoryName} created`);
+        console.log(`New directory ${this.name} created`);
       }
     });
   }
@@ -45,6 +41,8 @@ export default class MkAndRm {
       rmdir(this.directoryPath, async (error) => {
         if (error) {
           console.error(error.message);
+        } else {
+          console.log(`Directory ${this.name} successfully deleted`);
         }
       });
     }
@@ -52,6 +50,7 @@ export default class MkAndRm {
       rm(this.directoryPath, async (error) => {
         if (error) {
           console.error(error.message);
+          console.log(`File ${this.name} successfully deleted`);
         }
       });
     }

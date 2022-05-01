@@ -2,7 +2,7 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { spawn } from 'child_process';
 import CheckRoute from '../src/checkRoute.class';
-import MkAndRm from '../src/newDirectory.class';
+import MkAndRm from '../src/mkAndRm.class';
 
 describe('Testing Path checker ', () => {
   describe('when a directory is introduced', () => {
@@ -41,7 +41,7 @@ describe('Testing existing path directory creator', () => {
   const createDir: MkAndRm = new MkAndRm('./database/Laura');
   it('Full path and new directory name can be read', () => {
     expect(createDir.directoryPath).to.be.eq('./database/Laura');
-    expect(createDir.directoryName).to.be.eq('Laura');
+    expect(createDir.name).to.be.eq('Laura');
   });
   it('Directory can be built', (done) => {
     createDir.build();
@@ -67,7 +67,7 @@ describe('Testing non existing path directory creator', () => {
   const createDir: MkAndRm = new MkAndRm('./random/route');
   it('Full path and new directory name can be read', () => {
     expect(createDir.directoryPath).to.be.eq('./random/route');
-    expect(createDir.directoryName).to.be.eq('route');
+    expect(createDir.name).to.be.eq('route');
   });
   it('Directory can\'t be built, error message is launched', (done) => {
     createDir.build();
