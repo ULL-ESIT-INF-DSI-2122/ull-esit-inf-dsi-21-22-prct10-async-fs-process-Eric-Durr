@@ -12,7 +12,6 @@ import { spawn } from 'child_process';
 const cat = spawn('cat', [process.argv[2]]);
 const grep = spawn('grep', [process.argv[3]]);
 cat.stdout.on('data', (data) => {
-  console.log('enters grep writing');
   grep.stdin.write(data.toString(), (err) => {
     if (err) {
       console.error('ERROR while writing grep input');
