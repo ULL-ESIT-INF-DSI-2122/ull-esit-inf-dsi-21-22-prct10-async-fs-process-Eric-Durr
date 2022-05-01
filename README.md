@@ -3,7 +3,7 @@
 >
 >>**Eric Dürr Sierra** - **eric.durr.20@ull.edu.es**
 >>
->> **Última modificación**: 25/04/2022
+>> **Última modificación**: 1/05/2022
 > 
 [![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct10-async-fs-process-Eric-Durr/badge.svg?branch=master)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct10-async-fs-process-Eric-Durr?branch=master)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ULL-ESIT-INF-DSI-2122_ull-esit-inf-dsi-21-22-prct10-async-fs-process-Eric-Durr&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ULL-ESIT-INF-DSI-2122_ull-esit-inf-dsi-21-22-prct10-async-fs-process-Eric-Durr)
@@ -20,27 +20,19 @@
 
 ## Indice
 
-- [PRACTICA 9 - Aplicación de procesamiento de notas de texto](#practica-9---aplicación-de-procesamiento-de-notas-de-texto)
+- [PRACTICA 10 - Sistema de ficheros y creación de procesos en Node.js](#practica-10---sistema-de-ficheros-y-creación-de-procesos-en-nodejs)
   - [Enlace a la documentación generada con TypeDoc](#enlace-a-la-documentación-generada-con-typedoc)
   - [Indice](#indice)
   - [Introducción](#introducción)
   - [Objetivos](#objetivos)
   - [Actividades previas](#actividades-previas)
-  - [Clases del programa](#clases-del-programa)
-    - [Clase Note](#clase-note)
-    - [Clase User](#clase-user)
-  - [Programa principal](#programa-principal)
-    - [Opción de creación de usuario](#opción-de-creación-de-usuario)
-    - [Opción de creación de usuario](#opción-de-creación-de-usuario-1)
-    - [Opción de adición de nota](#opción-de-adición-de-nota)
-    - [Opción de edición de una nota](#opción-de-edición-de-una-nota)
-    - [Opción de lectura de títulos](#opción-de-lectura-de-títulos)
-    - [Opción de lectura de una nota](#opción-de-lectura-de-una-nota)
-    - [Opción de eliminación de una nota](#opción-de-eliminación-de-una-nota)
-  - [Para la ejecución](#para-la-ejecución)
+  - [Ejercicio 1 - Traza de código asíncrono](#ejercicio-1---traza-de-código-asíncrono)
+    - [Traza](#traza)
+  - [Ejercicio 2 - Ocurrencias](#ejercicio-2---ocurrencias)
+  - [Ejercicio 3 - Watch de notas](#ejercicio-3---watch-de-notas)
+  - [Ejercicio 4 - Wrapper](#ejercicio-4---wrapper)
   - [Referencias](#referencias)
   - [Estructura del directorio](#estructura-del-directorio)
-  - [Comandos para la aplicación de notas](#comandos-para-la-aplicación-de-notas)
   - [Comandos npm del repositorio](#comandos-npm-del-repositorio)
 
 ***
