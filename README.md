@@ -521,7 +521,41 @@ error `ERR_FEATURE_UNAVAILABLE_ON_PLATFORM('watch recursively')`.
 
 Este ejercicio hace uso de dos clases diseñadas para envolver la gestión de algunos de los comandos mientras que otros
 son ejecutados directamente por su simplicidad. Se ha optado por este desarrollo al querer evitar construir clases y
-añadir complejidad a interfaces que mediante métodos encadenados se pueden controlar perfectamente. 
+añadir complejidad a interfaces que mediante métodos encadenados se pueden controlar perfectamente.
+
+La primera clase desarrollada se plantea para abstraer la comprobación de la naturaleza de una ruta, es decir si es un
+directorio, un archivo o ninguno de ellos. La clase CheckRoute posee una propiedad `route` que contiene la dirección
+terminal que se quiere comprobar y el atributo `type` contiene la información del tipo. Este último es asignado en el
+contructor y en la reassignación del valor de `route` al ejecutar el método `setType()`, por defecto el tipo contiene
+'none'.
+
+Para establecer el tipo setType() primero comprueba que la ruta represente un punto existente en el sistema de ficheros,
+en caso negativo se asigna 'none', en otro caso se comprueba si es un fichero por medio de la sentencia
+`lstatSync(this._route).isDirectory()` o un directorio haciendo uso de `lstatSync(this._route).isFile()`.
+
+La siguiente clase desarrollada tiene como objetivo simplificar la creación de directorios y la eliminación de ficheros
+o directorios. MkAndRm separa en dos propiedades la ruta indicada como parámetro para extraer el nómbre del final de la
+ruta y usarlo al notificar de las acciones tomadas.
+
+El método `build()` construye a partir del atributo `directoryPath` un directorio haciendo uso de la función `mkdir` del
+módulo `fs` y capturando el error, si es emitido, para notificarlo al usuario por consola.
+
+El método `destroy()` también hace uso de la ruta pero comprueba por medio de la clase CeckRoute antes explicada para
+proceder distinto si se trata de un directorio o un fichero. En el caso de que sea un directorio se invoca la función 
+`rmdir()` del sistema de ficheros procediendo de manera similar al método `build()` a la hora de notificar al usuario 
+del progreso del programa. En caso de que se trate de un fichero se procede exactamente igual pero haciendo uso de la
+función `rm()`.
+
+Las opciones de ejecución de ls y cat simplemente se ejecutan y se captura el evento 'data' de su propiedad `stdout`
+para mostrar el contenido del Buffer por consola.
+
+Para la copia de ficheros o directorios se maneja el tipo de archivo de la ruta origen para que en caso de no contener 
+ni un fichero ni un directorio el programa así lo notifique y, para en otro caso proceder de la forma adecuada con el
+comando `cp`. Cuando es un directorio se hace uso de `spawn()` para ejecutar cp con el argumento '-r' a parte de las dos
+rutas y capturando el evento 'data' para mostrar la salida estandar de estos procesos por la salida estandar del proceso
+principal.
+
+En caso de que se introduzca una opción no contemplada el usuario recibirá un mensaje que le haga conocer este efecto.
 
 ***
 
