@@ -444,7 +444,7 @@ necesario registrar cuando esta emite información, en otras palabras cuando emi
 
 ```TypeScript
 cat.stdout.on('data', (data) => {
-  ···
+  ...
 });
 ```
 
@@ -460,9 +460,68 @@ capturar la salida para formatearla y emitir el número de ocurrencias.
 
 ## Ejercicio 3 - Watch de notas
 
+Para este ejericio el programa principal sólo se encarga de manejar que la ejecución del watcher es satisfactoria,
+quedando bastante reducido al utilizar una clase que gestiona esta acción.
+
+```ts
+import WatchUserClass from './watchUser.class';
+
+const usersWatcher: WatchUserClass = new WatchUserClass(process.argv[2]);
+
+if (!usersWatcher.singleUserWatcher) {
+  console.error(`ERROR: user ${process.argv[2]} was not found`);
+}
+```
+
+La clase se diseña para, a partir de un nombre de usuario, obtener la lista de ficheros del usuario y construir un
+accesor para vigilar la interacción dentro del directorio del usuario. El método devuelve `true` o `false` en función de
+si se consigue abrir la ruta del usuario, es decir, si existe el usuario.
+
+Una vez se activa el watcher se notifica por medio de un `console.log()` y se manejan los eventos 'rename' y 'change'.
+Cuando se lanza un evento 'change' implica que un archivo ha sido editado, el nombre del archivo se vuelca en la
+variable `filename`, lo cual se usa para notificar exactamente el documento editado a la hora de notificar esta
+interacción.
+
+Cuando se lanza un evento de tipo 'rename' es indicativo de que el fichero se ha renombrado, eliminado o añadido. En
+este caso se acude al método privado auxiliar `manageRename()` dentro del cual se detecta si se ha añadido o eliminado
+un fichero comparando las longitudes de dos listas de ficheros. Si la lista actual es mayor que la propiedad de la clase
+quiere decir que se ha añadido un fichero, si es menor implica que se ha eliminado un fichero. En cualquier caso, tras 
+notificar de lo ocurrido se actualiza la lista del objeto.
+
+Si se quisiera mostrar el contenido de un fichero añadido, dentro del condicional que registra el crecimiento de la
+lista, se debe mostrar la salida de la instrucción `fs.readFileSync(`./database/${this.user}/${filename}`).toString()`
+por pantalla.
+
+```ts
+  manageRename(filename: string) {
+    const currFileNames: string[] = fs.readdirSync(`./database/${this.user}`);
+
+    if (currFileNames.length > this.filesList.length) {
+      console.log(`A new note was created for ${this.user}, new note is ${filename}`);
+      // console.log('The file contains:');
+      // console.log(fs
+      //   .readFileSync(`./database/${this.user}/${filename}`)
+      //   .toString());
+    }
+    if (currFileNames.length < this.filesList.length) {
+      console.log(`Note ${filename} was deleted for ${this.user}`);
+    }
+    this.updateList();
+  }
+```
+
+Otra de las cuestiones es vigilar un directorio y los cambios para sus subdirectorios, para lo cual es necesario añadir
+un parámtero de opción a la ejecución de la función `watch()`. Se añade el objeto `{ recursive: true }` para activar la
+vigilancia en los subdirectorios, cosa que lamentablemente no es posible actualmente en entornos linux, ya que emite el
+error `ERR_FEATURE_UNAVAILABLE_ON_PLATFORM('watch recursively')`.
+
 ***
 
 ## Ejercicio 4 - Wrapper
+
+Este ejercicio hace uso de dos clases diseñadas para envolver la gestión de algunos de los comandos mientras que otros
+son ejecutados directamente por su simplicidad. Se ha optado por este desarrollo al querer evitar construir clases y
+añadir complejidad a interfaces que mediante métodos encadenados se pueden controlar perfectamente. 
 
 ***
 
@@ -503,6 +562,17 @@ P10/
 ## Comandos npm del repositorio
 
 - **npm test**  `ejecuta los test unitarios`
+- **npm run task-1 [file]** `ejecuta el código del ejercicio 1`
+- **npm run task-2-piped [file]** `ejecuta la versión con tuberías del ejercicio 2`
+- **npm run task-2-no-pipe [file]** `ejecuta la versión sin tuberías del ejercicio 2`
+- **npm run task-3 [user]** `ejecuta el watcher para las notas del usuario indicado`
+- **npm run task-4 [option] [arg]** `ejecuta la acción del ejercicio 4 especificada`
+  - test-path [path] `examinar si una ruta contiene un fichero o un directorio`
+  - mkdir [path/to/dirname] `crear un directorio en la ruta indicada con el nombre al final`
+  - ls [path] `listar los ficheros de la ruta indicada`
+  - cat [path/to/filename] `listar el contenido del fichero indicado`
+  - auto-rm [path/to/filename or path/to/dirname] `eliminar el fichero o directorio indicado`
+  - auto-cp [path/to/filename or path/to/dirname] [path/to/dirname] `copiar el fichero o directorio en la ruta indicada`
 - **npm run test:watch** `inicia la ejecución de los test unitarios de manera ininterrumpida`
 - **npm run test:coverage** `inicia la ejecución de los test junto con la cobertura de código`
 - **npm run get:coverage** `transforma el informe de la cobertura de código en formato lcov`
