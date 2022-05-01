@@ -6,9 +6,13 @@ import fs, { existsSync, watch } from 'fs';
  * ## Features
  *
  * - user | name of the user to watch notes
+ * - filesList | array with all the files in the user directory
  *
  * ## Methods
  * - user(void) | returns String with user name
+ * - filesList(void) | returns an array wtith all the user file names
+ * - updateList(void) | sets the filesList to the current status
+ * - manageRename(filename) | notifies to user if a file was added or deleted
  * - singleUserWatcher(void) | returns boolean of execution, runs directory singleUserWatcher events
  */
 

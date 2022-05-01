@@ -19,6 +19,16 @@ import { spawn } from 'child_process';
 import CheckRoute from './checkRoute.class';
 import MkAndRm from './mkAndRm.class';
 
+if (process.argv.length < 3) {
+  console.log('ERROR: missing action option for script');
+  process.exit(1);
+}
+
+if (process.argv.length < 4) {
+  console.log(`ERROR: missing argument for ${process.argv[2]}`);
+  process.exit(1);
+}
+
 switch (process.argv[2]) {
   case 'test-path':
     if (new CheckRoute(process.argv[3]).type === 'none') {

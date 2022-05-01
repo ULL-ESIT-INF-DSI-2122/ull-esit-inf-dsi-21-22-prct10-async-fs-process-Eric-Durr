@@ -1,4 +1,18 @@
 import { existsSync, lstatSync } from 'fs';
+/**
+ * # mk and rm | Primary parent class
+ * This class watches changes on a certain user notes and notify them
+ *
+ * ## Features
+ *
+ * - type | string with one of the values for path endpoint
+ * - route | string with the path to check
+ *
+ * ## Methods
+ * - route(void) | returns String with complete path or sets new path
+ * - type(void) | returns String with type of endpoint
+ * - setType(void) | reads path properties to update type property
+ */
 
 export default class CheckRoute {
   private _type: 'directory' | 'file' | 'none';

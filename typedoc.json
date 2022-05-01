@@ -4,7 +4,8 @@
     "./src/notes/Note.class.ts",
     "./src/notes/User.class.ts",
     "./src/checkRoute.class.ts",
-    "./src/watchUser.class.ts"
+    "./src/watchUser.class.ts",
+    "./src/MkAndRm.class.ts"
   ],
   "out": "doc"
 }

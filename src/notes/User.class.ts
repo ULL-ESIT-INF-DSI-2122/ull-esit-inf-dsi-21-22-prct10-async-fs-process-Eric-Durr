@@ -1,4 +1,21 @@
 import { Note, Color } from './Note.class';
+/**
+ * # User | Primary parent class
+ * User representation of note app
+ *
+ * ## Features
+ *
+ * - notes | array of notes of the user
+ * - userName | String with the username
+ *
+ * ## Methods
+ * - note(inx) | returns a single note by index
+ * - noteByTitle(title) | returns a single note found by title or undefined
+ * - addNote(title?, body?, color?) | adds a note by default or using their properties, returns a boolean with success info
+ * - editNote(title?, body, color) | edits a note from the list
+ * - removeNote(title) | deletes a note by title from the user list
+ * - readNote(title) | returns a formatted String of the note
+ */
 
 export default class User {
   private _notes: Note[];

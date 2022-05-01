@@ -1,5 +1,17 @@
 export type Color = 'yellow' | 'blue' | 'red' | 'green';
 
+/**
+ * # Note | Primary parent class
+ * Note structure, properties and operations
+ *
+ * ## Features
+ *
+ * - title
+ * - body
+ * - color | 'red', 'green', 'blue' or 'yellow'(default)
+ *
+ */
+
 export class Note {
   private _title: string;
 

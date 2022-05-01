@@ -1,6 +1,22 @@
 import { mkdir, rmdir, rm } from 'fs';
 import CheckRoute from './checkRoute.class';
 
+/**
+ * # mk and rm | Primary parent class
+ * This class watches changes on a certain user notes and notify them
+ *
+ * ## Features
+ *
+ * - directoryPath | string with the full path
+ * - name | name of the file or directory endpoint
+ *
+ * ## Methods
+ * - directoryPath(void) | returns String with complete path
+ * - name(void) | returns String with endpoint name
+ * - build(void) | creates a new directory in the path
+ * - destroy(void) | deletes a file or directory in the path
+ */
+
 export default class MkAndRm {
   private _directoryPath: string;
 
@@ -50,6 +66,7 @@ export default class MkAndRm {
       rm(this.directoryPath, async (error) => {
         if (error) {
           console.error(error.message);
+        } else {
           console.log(`File ${this.name} successfully deleted`);
         }
       });
