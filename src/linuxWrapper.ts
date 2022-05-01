@@ -15,7 +15,31 @@
  *       se debe copiar dicho directorio y todo su contenido a la ruta destino.
  */
 
+import { spawn } from 'child_process';
 import CheckRoute from './checkRoute.class';
+import NewDirectory from './newDirectory.class';
 
-const directoryRoute: CheckRoute = new CheckRoute('./database');
-directoryRoute.setType();
+switch (process.argv[2]) {
+  case 'test-path':
+    if (new CheckRoute(process.argv[3]).type === 'none') {
+      console.log('The path doesn\'t contain a file nor a directory');
+    } else {
+      console.log(`The path shows a ${new CheckRoute(process.argv[3]).type}`);
+    }
+    break;
+  case 'mkdir':
+    new NewDirectory(process.argv[3]).build();
+    break;
+  case 'ls':
+    spawn('ls', ['-lah', process.argv[3]]).stdout.on('data', (data) => {
+      console.log(data.toString());
+    });
+    break;
+  case 'cat':
+    spawn('cat', [process.argv[3]]).stdout.on('data', (data) => {
+      console.log(data.toString());
+    });
+    break;
+  default:
+    break;
+}

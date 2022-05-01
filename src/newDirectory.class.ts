@@ -34,6 +34,8 @@ export default class NewDirectory {
     mkdir(this.directoryPath, async (error) => {
       if (error) {
         console.error(error.message);
+      } else {
+        console.log(`New directory ${this.directoryName} created`);
       }
     });
   }
